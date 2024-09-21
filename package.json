@@ -13,9 +13,14 @@
     "test:ui": "vitest -u --ui"
   },
   "dependencies": {
+    "axios": "^1.7.7",
+    "flowbite-react": "^0.10.1",
     "next": "14.2.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.3.0",
+    "tmdb-ts": "^2.0.0",
+    "use-debounce": "^10.0.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
@@ -50,7 +55,9 @@
     "prettier-plugin-tailwindcss": "^0.5.14",
     "sharp": "^0.33.4",
     "tailwind-merge": "^2.4.0",
+    "tailwind-mobile-hover": "^1.0.0",
     "tailwindcss": "^3.4.6",
+    "tailwindcss-grid-areas": "^0.1.1",
     "tailwindcss-touch": "^1.0.1",
     "typescript": "^5.5.3",
     "vite-tsconfig-paths": "^4.3.2",

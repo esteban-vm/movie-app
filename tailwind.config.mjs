@@ -1,12 +1,16 @@
-import tailwindFluid, { extract, fontSize, screens } from 'fluid-tailwind'
-// @ts-ignore
-import tailwindCSSTouch from 'tailwindcss-touch'
+// @ts-nocheck
+
+import { content, plugin } from 'flowbite-react/tailwind'
+import fluid, { extract, fontSize, screens } from 'fluid-tailwind'
+import mobileHover from 'tailwind-mobile-hover'
+import { gridAreas } from 'tailwindcss-grid-areas'
+import touch from 'tailwindcss-touch'
 
 /** @type {import("tailwindcss").Config} */
 const tailwindConfig = {
   content: {
     extract,
-    files: ['./src/(app|components|shared)/**/*.{js,ts,jsx,tsx,mdx}'],
+    files: ['./src/**/*.{js,ts,jsx,tsx,mdx}', content()],
   },
   theme: {
     screens,
@@ -17,10 +21,23 @@ const tailwindConfig = {
       },
     },
   },
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
-  plugins: [tailwindFluid, tailwindCSSTouch()],
+  plugins: [
+    fluid,
+    mobileHover,
+    touch(),
+    plugin(),
+    gridAreas({
+      home: {
+        base: ['movie-carousel', 'movie-carousel', 'movie-carousel', 'movie-carousel', 'movie-list', 'movie-grid'],
+        md: [
+          'movie-carousel movie-carousel movie-list',
+          'movie-carousel movie-carousel movie-list',
+          'movie-carousel movie-carousel movie-list',
+          'movie-grid movie-grid movie-grid',
+        ],
+      },
+    }),
+  ],
 }
 
 export default tailwindConfig
