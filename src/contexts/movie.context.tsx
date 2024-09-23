@@ -6,6 +6,8 @@ import { NEXT_PUBLIC_API_URL } from '@/constants'
 
 interface IMovieContext {
   movies: MovieData[]
+  setCurrentIndex: (index: number) => void
+  nextMovies: MovieData[]
   isLoading: boolean
   isError: boolean
 }
@@ -14,6 +16,8 @@ const MovieContext = createContext<IMovieContext>(null!)
 
 export function MovieContextProvider(props: { children: ReactNode }) {
   const [movies, setMovies] = useState<MovieData[]>([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [nextMovies, setNextMovies] = useState<MovieData[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
 
@@ -41,8 +45,26 @@ export function MovieContextProvider(props: { children: ReactNode }) {
     getMovies()
   }, [])
 
+  useEffect(() => {
+    const totalMovies = movies.length
+
+    if (totalMovies) {
+      const index1 = (currentIndex + 1) % totalMovies
+      const index2 = (currentIndex + 2) % totalMovies
+      const index3 = (currentIndex + 3) % totalMovies
+
+      const movie1 = movies[index1]
+      const movie2 = movies[index2]
+      const movie3 = movies[index3]
+
+      setNextMovies([movie1, movie2, movie3])
+    }
+  }, [currentIndex, movies])
+
   const value: IMovieContext = {
     movies,
+    setCurrentIndex,
+    nextMovies,
     isLoading,
     isError,
   }
