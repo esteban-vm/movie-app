@@ -6,7 +6,7 @@ import { MovieSlide } from '@/components'
 import { useMovieContext } from '@/contexts'
 
 export default function MovieCarousel() {
-  const { movies, isLoading, isError } = useMovieContext()
+  const { movies, setCurrentIndex, isLoading, isError } = useMovieContext()
 
   if (isLoading) return <div>Loading</div>
   if (isError) return <div>Error</div>
@@ -22,6 +22,7 @@ export default function MovieCarousel() {
       role='region'
       slideInterval={5_000}
       pauseOnHover
+      onSlideChange={setCurrentIndex}
     >
       {movies.map((movie) => (
         <MovieSlide key={movie.id} {...movie} />
