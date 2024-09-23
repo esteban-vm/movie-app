@@ -4,10 +4,10 @@ import { getPlaceholderImage } from '@/utils'
 
 export async function GET() {
   try {
-    const { default: results }: { default: Movie[] } = await import('@/data/upcoming_movies.json')
+    const { upcoming } = await import('@/mocks')
 
     const movies = await Promise.all(
-      results.map(async (movie): Promise<MovieData> => {
+      upcoming.map(async (movie: Movie): Promise<MovieData> => {
         const backdropPlaceholder = await getPlaceholderImage(movie.backdrop_path)
         const posterPlaceholder = await getPlaceholderImage(movie.poster_path)
 

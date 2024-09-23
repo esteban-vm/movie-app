@@ -18,24 +18,24 @@ export default function MovieSlide({
     <div
       aria-labelledby={id}
       aria-roledescription='slide'
-      className='relative size-full cursor-default rounded-lg border-4 border-indigo-500'
+      className='relative size-full cursor-default rounded-lg border-4 border-indigo-700'
       role='group'
     >
       <Image
         alt={title}
         blurDataURL={backdrop_placeholder}
-        className='object-cover contrast-125 saturate-150'
+        className='rounded-sm object-cover contrast-125 saturate-150'
         placeholder='blur'
         src={backdrop_path}
         fill
       />
       <div className='absolute inset-0 bg-gradient-to-t from-indigo-700 to-indigo-300/15' />
       <div className='absolute inset-x-0 bottom-0 top-[55%] flex'>
-        <div className='relative h-full w-1/3 overflow-hidden border-r-4 border-t-4 border-indigo-500 md:w-1/4'>
+        <div className='relative h-full w-1/3 overflow-hidden border-r-4 border-t-4 border-indigo-700 md:w-1/4'>
           <Image
             alt={`${title} poster`}
             blurDataURL={poster_placeholder}
-            className='object-cover contrast-125 transition-all duration-300'
+            className='rounded-bl-lg object-cover contrast-125 transition-all duration-300'
             placeholder='blur'
             src={poster_path}
             fill

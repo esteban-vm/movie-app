@@ -28,13 +28,8 @@ const tailwindConfig = {
     plugin(),
     gridAreas({
       home: {
-        base: ['movie-carousel', 'movie-carousel', 'movie-carousel', 'movie-carousel', 'movie-list', 'movie-grid'],
-        md: [
-          'movie-carousel movie-carousel movie-list',
-          'movie-carousel movie-carousel movie-list',
-          'movie-carousel movie-carousel movie-list',
-          'movie-grid movie-grid movie-grid',
-        ],
+        base: ['movie-carousel', 'movie-list', 'movie-grid'],
+        md: ['movie-carousel movie-carousel movie-list', 'movie-grid movie-grid movie-grid'],
       },
     }),
   ],

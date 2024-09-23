@@ -3,10 +3,16 @@
 @tailwind utilities;
 
 @layer components {
+  .grid-areas-home {
+    > div:not(:last-child) {
+      @apply ~h-[40rem]/[45rem];
+    }
+  }
+
   .area-movie-carousel {
     button.group {
       svg {
-        @apply fill-slate-100 text-indigo-500 transition-all ~size-10/12 active:scale-90 hover:opacity-90;
+        @apply fill-slate-100 text-indigo-700 transition-all ~size-10/12 active:scale-90 hover:opacity-90;
       }
     }
 
