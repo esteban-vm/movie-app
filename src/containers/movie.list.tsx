@@ -1,22 +1,19 @@
-'use client'
-
+import type { MovieData } from '@/types'
 import { MovieItem } from '@/components'
-import { useMovieContext } from '@/contexts'
 
-export default function MovieList() {
-  const { nextMovies, isLoading, isError } = useMovieContext()
+interface MovieListProps {
+  movies: MovieData[]
+}
 
-  if (isLoading) return <div>Loading</div>
-  if (isError) return <div>Error</div>
-
+export default function MovieList({ movies }: MovieListProps) {
   return (
     <aside
-      className='flex size-full flex-col items-start justify-center gap-1 rounded-lg bg-indigo-700 p-1 text-white'
+      className='flex flex-col items-start justify-center gap-1 rounded-lg bg-indigo-700 p-1 text-white area-movie-list'
       role='list'
     >
       <h2 className='font-bold ~text-xl/3xl'>Up Next</h2>
       <div className='flex w-full grow flex-col gap-1'>
-        {nextMovies.map((movie) => (
+        {movies.map((movie) => (
           <MovieItem key={movie.id} {...movie} />
         ))}
       </div>
