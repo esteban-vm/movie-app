@@ -16,13 +16,13 @@
       }
     }
 
-    img:last-of-type {
+    /* img:last-of-type {
       @apply transition-all duration-1000;
       mask: linear-gradient(135deg, #000c 40%, theme('colors.white'), #000c 60%) 100% 100%/250% 250%;
 
       &:hover {
         mask-position: 0 0;
       }
-    }
+    } */
   }
 }

@@ -18,30 +18,30 @@ export default function MovieSlide({
     <div
       aria-labelledby={id}
       aria-roledescription='slide'
-      className='relative size-full cursor-default rounded-lg border-4 border-indigo-700'
+      className='relative size-full overflow-hidden rounded-lg border-4 border-indigo-700'
       role='group'
     >
       <Image
         alt={title}
         blurDataURL={backdrop_placeholder}
-        className='rounded-sm object-cover contrast-125 saturate-150'
+        className='object-cover contrast-125 saturate-150'
         placeholder='blur'
         src={backdrop_path}
         fill
       />
       <div className='absolute inset-0 bg-gradient-to-t from-indigo-700 to-indigo-300/15' />
       <div className='absolute inset-x-0 bottom-0 top-[55%] flex'>
-        <div className='relative h-full w-1/3 overflow-hidden border-r-4 border-t-4 border-indigo-700 md:w-1/4'>
+        <div className='relative h-full w-2/5 overflow-hidden rounded-tr-lg border-r-4 border-t-4 border-indigo-700 md:w-1/4'>
           <Image
             alt={`${title} poster`}
             blurDataURL={poster_placeholder}
-            className='rounded-bl-lg object-cover contrast-125 transition-all duration-300'
+            className='object-cover contrast-125 saturate-100 transition-all duration-300'
             placeholder='blur'
             src={poster_path}
             fill
           />
         </div>
-        <div className='flex h-full w-2/3 flex-col items-start justify-end text-white ~gap-2/4 ~p-2/4 md:w-3/4'>
+        <div className='flex h-full w-3/5 flex-col items-start justify-end text-white ~gap-2/4 ~p-2/4 md:w-3/4'>
           <h2 className='flex max-w-full grow items-center justify-start' id={id}>
             <span className='truncate font-semibold uppercase ~text-xl/3xl'>{title}</span>
           </h2>

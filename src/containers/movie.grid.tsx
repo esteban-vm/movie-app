@@ -1,15 +1,24 @@
+'use client'
+
+import { MovieCard } from '@/components'
+import { useTopRatedMovies } from '@/hooks'
+
 export default function MovieGrid() {
-  return (
-    <div className='flex flex-col items-center justify-center gap-1 rounded-lg bg-indigo-700 p-1 text-white area-movie-grid'>
-      <h2>Movie Grid</h2>
-      <p className='text-center'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus libero quas minima labore cum magni blanditiis
-        repellat suscipit ut rem officia nobis quae placeat, error voluptas atque nemo sit quos!
-      </p>
-      <p className='text-center'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod non harum facere reprehenderit recusandae ducimus,
-        aspernatur quidem eaque error debitis.
-      </p>
-    </div>
-  )
+  const { isLoading, isError, isSuccess, data: movies } = useTopRatedMovies()
+
+  if (isLoading) return <div>Loading</div>
+  if (isError) return <div>Error</div>
+
+  if (isSuccess) {
+    return (
+      <div className='rounded-lg bg-indigo-700 p-1 text-white area-movie-grid'>
+        <h2 className='font-bold uppercase ~text-xl/2xl'>Top Rated Movies</h2>
+        <div className='flex w-full flex-wrap content-center items-center justify-center gap-2 p-2'>
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} {...movie} />
+          ))}
+        </div>
+      </div>
+    )
+  }
 }

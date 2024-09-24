@@ -7,19 +7,23 @@ export default function MovieItem({ poster_path, poster_placeholder, overview, t
   const id = useId()
 
   return (
-    <div aria-labelledby={id} className='flex h-1/3 rounded-lg border-2 border-white hover:opacity-90' role='listitem'>
-      <div className='relative w-1/3 overflow-hidden'>
+    <div
+      aria-labelledby={id}
+      className='flex h-1/3 overflow-hidden rounded-lg border-2 border-white hover:opacity-90'
+      role='listitem'
+    >
+      <div className='relative w-1/3'>
         <Image
           alt={`${title} poster`}
           blurDataURL={poster_placeholder}
-          className='rounded-l-lg object-cover contrast-125 saturate-150'
+          className='object-cover contrast-125 saturate-100'
           placeholder='blur'
           src={poster_path}
           fill
         />
       </div>
       <div className='flex w-2/3 flex-col items-start justify-around ~gap-2/3 ~p-2/3'>
-        <h2 className='max-w-full truncate font-semibold uppercase ~text-lg/2xl' id={id}>
+        <h2 className='max-w-full truncate font-semibold uppercase ~text-lg/xl' id={id}>
           {title}
         </h2>
         <p className='line-clamp-3 max-h-fit italic ~text-sm/base'>{overview}</p>
