@@ -14,10 +14,7 @@ export const useMoviesCarousel = (movies?: MovieData[]) => {
       const index1 = (current + 1) % total
       const index2 = (current + 2) % total
       const index3 = (current + 3) % total
-      const movie1 = movies[index1]
-      const movie2 = movies[index2]
-      const movie3 = movies[index3]
-
+      const { [index1]: movie1, [index2]: movie2, [index3]: movie3 } = movies
       setNextMovies([movie1, movie2, movie3])
     }
   }, [current, movies])
