@@ -11,7 +11,7 @@ export default function MovieList({ movies }: MovieListProps) {
       className='flex flex-col items-start justify-center gap-1 rounded-lg bg-indigo-700 p-1 text-white area-movie-list'
       role='list'
     >
-      <h2 className='font-bold ~text-xl/3xl'>Up Next</h2>
+      <h2 className='font-bold uppercase ~text-xl/2xl'>Up Next</h2>
       <div className='flex w-full grow flex-col gap-1'>
         {movies.map((movie) => (
           <MovieItem key={movie.id} {...movie} />

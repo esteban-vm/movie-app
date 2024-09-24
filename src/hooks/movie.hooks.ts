@@ -23,7 +23,7 @@ export const useMoviesCarousel = (movies?: MovieData[]) => {
 }
 
 export const useTopRatedMovies = () => {
-  useQuery({
+  return useQuery({
     queryKey: ['top-rated-movies'],
     queryFn: getTopRatedMovies,
   })
