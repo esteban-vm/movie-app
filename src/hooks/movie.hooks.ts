@@ -3,12 +3,12 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { getTopRatedMovies, getUpcomingMovies } from '@/utils'
 
-export const useMoviesCarousel = (movies?: MovieData[]) => {
+export const useMoviesCarousel = (movies: MovieData[]) => {
   const [current, setCurrent] = useState(0)
   const [nextMovies, setNextMovies] = useState<MovieData[]>([])
 
   useEffect(() => {
-    const total = movies?.length
+    const total = movies.length
 
     if (total) {
       const index1 = (current + 1) % total

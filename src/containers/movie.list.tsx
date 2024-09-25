@@ -1,22 +1,27 @@
 import type { MovieData } from '@/types'
-import { MovieItem } from '@/components'
+import { LoadingSpinner, MovieItem } from '@/components'
+import { clsx } from '@/utils'
 
 interface MovieListProps {
+  isLoading: boolean
   movies: MovieData[]
 }
 
-export default function MovieList({ movies }: MovieListProps) {
+export default function MovieList({ isLoading, movies }: MovieListProps) {
   return (
-    <aside
-      className='flex flex-col items-start justify-center gap-1 rounded-lg bg-indigo-700 p-1 text-white area-movie-list'
-      role='list'
-    >
-      <h2 className='font-bold uppercase ~text-xl/2xl'>Up Next</h2>
-      <div className='flex w-full grow flex-col gap-1'>
-        {movies.map((movie) => (
-          <MovieItem key={movie.id} {...movie} />
-        ))}
-      </div>
+    <aside className={clsx('area-movie-list', isLoading && 'cursor-wait')} role='list'>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <h2 className='font-bold uppercase ~text-xl/2xl'>Up Next</h2>
+          <div className='flex w-full grow flex-col gap-1'>
+            {movies.map((movie) => (
+              <MovieItem key={movie.id} {...movie} />
+            ))}
+          </div>
+        </>
+      )}
     </aside>
   )
 }
