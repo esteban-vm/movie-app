@@ -15,16 +15,11 @@ export default function MovieSlide({
   const id = useId()
 
   return (
-    <div
-      aria-labelledby={id}
-      aria-roledescription='slide'
-      className='relative size-full overflow-hidden rounded-lg border-4 border-indigo-700'
-      role='group'
-    >
+    <div aria-labelledby={id} aria-roledescription='slide' className='relative size-full overflow-hidden' role='group'>
       <Image
         alt={title}
         blurDataURL={backdrop_placeholder}
-        className='object-cover contrast-125 saturate-150'
+        className='rounded-lg border border-indigo-700 object-cover contrast-125 saturate-150'
         placeholder='blur'
         src={backdrop_path}
         fill
@@ -41,7 +36,7 @@ export default function MovieSlide({
             fill
           />
         </div>
-        <div className='flex h-full w-3/5 flex-col items-start justify-end text-white ~gap-2/4 ~p-2/4 md:w-3/4'>
+        <div className='flex h-full w-3/5 flex-col items-start justify-end ~gap-2/4 ~p-2/4 md:w-3/4'>
           <h2 className='flex max-w-full grow items-center justify-start' id={id}>
             <span className='truncate font-semibold uppercase ~text-xl/3xl'>{title}</span>
           </h2>
