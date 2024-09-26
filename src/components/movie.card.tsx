@@ -13,7 +13,7 @@ export default function MovieCard({
   return (
     <Tooltip content={title} role='tooltip' style='auto'>
       <Card
-        className='group overflow-hidden border-2 bg-transparent ~w-72/80 hover:opacity-90'
+        className='group overflow-hidden border-2 bg-transparent ~w-[17rem]/72 hover:opacity-90'
         role='gridcell'
         renderImage={() => {
           return (
@@ -33,7 +33,7 @@ export default function MovieCard({
         }}
       >
         <article>
-          <h3 className='mb-1 truncate font-bold ~text-base/lg'>{title}</h3>
+          <h3 className='mb-1 truncate font-semibold uppercase ~text-base/lg'>{title}</h3>
           <p className='border-b border-dashed border-white ~text-sm/base'>Rating: {vote_average.toFixed(1)}</p>
           <p className='border-b border-dashed border-white ~text-sm/base'>Language: {original_language}</p>
           <p className='truncate border-b border-dashed border-white ~text-sm/base'>
