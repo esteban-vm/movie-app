@@ -10,7 +10,7 @@ export default function MovieProvider(props: { children: ReactNode }) {
   return (
     <QueryClientProvider client={client}>
       <ReactQueryStreamedHydration {...props} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools buttonPosition='bottom-left' initialIsOpen={false} />
     </QueryClientProvider>
   )
 }

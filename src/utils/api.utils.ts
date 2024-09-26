@@ -6,8 +6,8 @@ const api = axios.create({
   baseURL: NEXT_PUBLIC_API_URL,
 })
 
-export async function getTopRatedMovies() {
-  const { data } = await api.get<MovieData[]>('/api/movies/top_rated')
+export async function getTopRatedMovies({ pageParam }: { pageParam: number }) {
+  const { data } = await api.get<MovieData[]>('/api/movies/top_rated', { params: { page: pageParam } })
   return data
 }
 
