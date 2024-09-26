@@ -1,5 +1,5 @@
 import type { MovieData } from '@/types'
-import { useQuery } from '@tanstack/react-query'
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { getTopRatedMovies, getUpcomingMovies } from '@/utils'
 
@@ -23,9 +23,13 @@ export const useMoviesCarousel = (movies: MovieData[]) => {
 }
 
 export const useTopRatedMovies = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ['top-rated-movies'],
     queryFn: getTopRatedMovies,
+    initialPageParam: 1,
+    getNextPageParam(lastPage, allPages) {
+      return lastPage.length > 0 ? allPages.length + 1 : undefined
+    },
   })
 }
 

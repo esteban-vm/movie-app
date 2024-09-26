@@ -1,3 +1,5 @@
+'use client'
+
 import type { MovieData } from '@/types'
 import Image from 'next/image'
 import { useId } from 'react'

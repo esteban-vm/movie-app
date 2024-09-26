@@ -1,8 +1,13 @@
 import { Button } from 'flowbite-react'
 
-export default function LoadMoreButton() {
+interface LoadMoreButtonProps {
+  isFetching: boolean
+  onClick: () => void
+}
+
+export default function LoadMoreButton({ isFetching, ...rest }: LoadMoreButtonProps) {
   return (
-    <Button gradientDuoTone='purpleToBlue' pill>
+    <Button disabled={isFetching} gradientDuoTone='purpleToBlue' isProcessing={isFetching} pill {...rest}>
       Load More…
     </Button>
   )

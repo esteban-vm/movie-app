@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { ThemeModeScript } from 'flowbite-react'
+import { ScrollButton } from '@/components'
 import { Navigation } from '@/containers'
 import { MovieProvider } from '@/providers'
 
@@ -20,6 +21,7 @@ export default function RootLayout(props: { children: ReactNode }) {
         <Navigation />
         <MovieProvider>
           <main className='absolute left-1/2 top-16 -z-10 w-full max-w-screen-2xl -translate-x-1/2' {...props} />
+          <ScrollButton />
         </MovieProvider>
       </body>
     </html>
