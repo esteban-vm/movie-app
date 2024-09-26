@@ -1,5 +1,9 @@
 import { Button } from 'flowbite-react'
 
 export default function LoadMoreButton() {
-  return <Button>Load More</Button>
+  return (
+    <Button gradientDuoTone='purpleToBlue' pill>
+      Load More…
+    </Button>
+  )
 }
