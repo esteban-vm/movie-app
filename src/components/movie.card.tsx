@@ -1,6 +1,9 @@
+'use client'
+
 import type { MovieData } from '@/types'
 import { Card, Tooltip } from 'flowbite-react'
 import Image from 'next/image'
+import { useId } from 'react'
 
 export default function MovieCard({
   original_language,
@@ -10,9 +13,12 @@ export default function MovieCard({
   title,
   vote_average,
 }: MovieData) {
+  const id = useId()
+
   return (
     <Tooltip content={title} role='tooltip' style='auto'>
       <Card
+        aria-labelledby={id}
         className='group overflow-hidden border-2 bg-transparent ~w-[17rem]/72 hover:opacity-90'
         role='gridcell'
         renderImage={() => {
@@ -33,7 +39,9 @@ export default function MovieCard({
         }}
       >
         <article>
-          <h3 className='mb-1 truncate font-semibold uppercase ~text-base/lg'>{title}</h3>
+          <h3 className='mb-1 truncate font-semibold uppercase ~text-base/lg' id={id}>
+            {title}
+          </h3>
           <p className='border-b border-dashed border-white ~text-sm/base'>Rating: {vote_average.toFixed(1)}</p>
           <p className='border-b border-dashed border-white ~text-sm/base'>Language: {original_language}</p>
           <p className='truncate border-b border-dashed border-white ~text-sm/base'>
