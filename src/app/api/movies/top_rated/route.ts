@@ -2,9 +2,12 @@
 // import type { Movie } from 'tmdb-ts'
 // import { getPlaceholderImage } from '@/utils'
 
-// export async function GET() {
+// export async function GET(request: Request) {
 //   try {
 //     await new Promise((resolve) => setTimeout(resolve, 5_000))
+
+//     const { searchParams } = new URL(request.url)
+//     const page = Number(searchParams.get('page'))
 //     const { topRated } = await import('@/mocks')
 
 //     const movies = await Promise.all(
@@ -14,6 +17,7 @@
 
 //         return {
 //           ...movie,
+//           id: Number(`${page}${movie.id}`),
 //           backdrop_placeholder: backdropPlaceholder,
 //           poster_placeholder: posterPlaceholder,
 //         }

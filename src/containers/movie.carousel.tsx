@@ -6,11 +6,12 @@ import { clsx } from '@/utils'
 
 interface MovieCarouselProps {
   isLoading: boolean
+  isAnimated: boolean
   movies: MovieData[]
   onChange: (value: number) => void
 }
 
-export default function MovieCarousel({ isLoading, movies, onChange }: MovieCarouselProps) {
+export default function MovieCarousel({ isLoading, isAnimated, movies, onChange }: MovieCarouselProps) {
   return (
     <div className={clsx('area-movie-carousel', isLoading && 'cursor-wait')}>
       {isLoading ? (
@@ -24,6 +25,7 @@ export default function MovieCarousel({ isLoading, movies, onChange }: MovieCaro
           leftControl={<LuChevronLeftCircle />}
           rightControl={<LuChevronRightCircle />}
           role='region'
+          slide={isAnimated}
           slideInterval={5_000}
           pauseOnHover
           onSlideChange={onChange}

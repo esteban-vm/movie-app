@@ -1,9 +1,22 @@
 import type { MovieData } from '@/types'
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
-import { getTopRatedMovies, getUpcomingMovies } from '@/utils'
 
-export const useMoviesCarousel = (movies: MovieData[]) => {
+export const useMovieCarousel = () => {
+  const [isAnimated, setIsAnimated] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: no-preference)')
+    const listenChanges = () => setIsAnimated(mediaQuery.matches)
+
+    listenChanges()
+    mediaQuery.addEventListener('change', listenChanges)
+    return () => mediaQuery.removeEventListener('change', listenChanges)
+  }, [])
+
+  return { isAnimated }
+}
+
+export const useMovieList = (movies: MovieData[]) => {
   const [current, setCurrent] = useState(0)
   const [nextMovies, setNextMovies] = useState<MovieData[]>([])
 
@@ -20,22 +33,4 @@ export const useMoviesCarousel = (movies: MovieData[]) => {
   }, [current, movies])
 
   return { setCurrent, nextMovies }
-}
-
-export const useTopRatedMovies = () => {
-  return useInfiniteQuery({
-    queryKey: ['top-rated-movies'],
-    queryFn: getTopRatedMovies,
-    initialPageParam: 1,
-    getNextPageParam(lastPage, allPages) {
-      return lastPage.length > 0 ? allPages.length + 1 : undefined
-    },
-  })
-}
-
-export const useUpcomingMovies = () => {
-  return useQuery({
-    queryKey: ['upcoming-movies'],
-    queryFn: getUpcomingMovies,
-  })
 }
