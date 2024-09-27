@@ -15,7 +15,7 @@ export default function Navigation() {
       </div>
       <NavbarCollapse>
         <NavLink href='/' name='All Movies' />
-        <NavLink href='/about' name='Explore' />
+        <NavLink href='/movies' name='Explore' />
       </NavbarCollapse>
     </Navbar>
   )
