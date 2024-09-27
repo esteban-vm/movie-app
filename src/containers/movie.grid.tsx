@@ -20,7 +20,7 @@ export default function MovieGrid() {
         <>
           <h2 className='font-bold uppercase ~text-xl/2xl'>Top Rated</h2>
           <div className='flex w-full flex-wrap items-center justify-center gap-1 p-1'>
-            {movies?.map((movie) => <MovieCard key={movie.id} {...movie} />)}
+            {movies?.map((movie, index) => <MovieCard key={index} {...movie} />)}
           </div>
           {hasNextPage && <LoadMoreButton isFetching={isFetchingNextPage} onClick={() => fetchNextPage()} />}
         </>

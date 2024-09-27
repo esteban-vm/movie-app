@@ -30,8 +30,8 @@ export default function MovieCarousel({ isLoading, isAnimated, movies, onChange 
           pauseOnHover
           onSlideChange={onChange}
         >
-          {movies.map((movie) => (
-            <MovieSlide key={movie.id} {...movie} />
+          {movies.map((movie, index) => (
+            <MovieSlide key={index} {...movie} />
           ))}
         </Carousel>
       )}
