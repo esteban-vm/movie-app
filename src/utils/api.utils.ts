@@ -3,18 +3,18 @@ import type { Route } from 'next'
 import axios from 'axios'
 import { NEXT_PUBLIC_API_URL } from '@/constants'
 
-const api = axios.create({
+const instance = axios.create({
   baseURL: NEXT_PUBLIC_API_URL,
 })
 
 export async function getTopRatedMovies({ pageParam }: { pageParam: number }) {
   const url: Route = '/api/movies/top_rated'
-  const { data } = await api.get<MovieData[]>(url, { params: { page: pageParam } })
+  const { data } = await instance.get<MovieData[]>(url, { params: { page: pageParam } })
   return data
 }
 
 export async function getUpcomingMovies() {
   const url: Route = '/api/movies/upcoming'
-  const { data } = await api.get<MovieData[]>(url)
+  const { data } = await instance.get<MovieData[]>(url)
   return data
 }

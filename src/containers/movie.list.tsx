@@ -16,8 +16,8 @@ export default function MovieList({ isLoading, movies }: MovieListProps) {
         <>
           <h2 className='font-bold uppercase ~text-xl/2xl'>Up Next</h2>
           <div className='flex w-full grow flex-col gap-1'>
-            {movies.map((movie) => (
-              <MovieItem key={movie.id} {...movie} />
+            {movies.map((movie, index) => (
+              <MovieItem key={index} {...movie} />
             ))}
           </div>
         </>
