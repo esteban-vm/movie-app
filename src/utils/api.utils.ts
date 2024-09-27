@@ -1,4 +1,5 @@
 import type { MovieData } from '@/types'
+import type { Route } from 'next'
 import axios from 'axios'
 import { NEXT_PUBLIC_API_URL } from '@/constants'
 
@@ -7,11 +8,13 @@ const api = axios.create({
 })
 
 export async function getTopRatedMovies({ pageParam }: { pageParam: number }) {
-  const { data } = await api.get<MovieData[]>('/api/movies/top_rated', { params: { page: pageParam } })
+  const url: Route = '/api/movies/top_rated'
+  const { data } = await api.get<MovieData[]>(url, { params: { page: pageParam } })
   return data
 }
 
 export async function getUpcomingMovies() {
-  const { data } = await api.get<MovieData[]>('/api/movies/upcoming')
+  const url: Route = '/api/movies/upcoming'
+  const { data } = await api.get<MovieData[]>(url)
   return data
 }
