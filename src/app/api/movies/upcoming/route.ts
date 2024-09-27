@@ -4,6 +4,7 @@
 
 // export async function GET() {
 //   try {
+//     await new Promise((resolve) => setTimeout(resolve, 3_000))
 //     const { upcoming } = await import('@/mocks')
 
 //     const movies = await Promise.all(
