@@ -1,3 +1,11 @@
 export default function Movies() {
-  return <div className='mt-24 text-black'>All Movies</div>
+  return (
+    <div>
+      <ul className='flex'>
+        {['Now Playing', 'Popular', 'Top Rated', 'Upcoming'].map((item) => (
+          <li key={crypto.randomUUID()}>{item}</li>
+        ))}{' '}
+      </ul>
+    </div>
+  )
 }

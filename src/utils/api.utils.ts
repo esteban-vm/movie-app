@@ -8,7 +8,7 @@ const instance = axios.create({
 })
 
 export async function getTopRatedMovies({ pageParam }: { pageParam: number }) {
-  const url: Route = '/api/movies/top_rated'
+  const url: Route = '/api/movies/top-rated'
   const { data } = await instance.get<MovieData[]>(url, { params: { page: pageParam } })
   return data
 }
