@@ -1,3 +1,3 @@
 'use client'
 
-export { default as MovieHero } from './movie.hero'
+export { default as HomeView } from './home.view'

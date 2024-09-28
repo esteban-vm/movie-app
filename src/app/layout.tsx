@@ -2,9 +2,11 @@ import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { ThemeModeScript } from 'flowbite-react'
+import localFont from 'next/font/local'
 import { ScrollButton } from '@/components'
 import { Navigation } from '@/containers'
 import { MovieProvider } from '@/providers'
+import { clsx } from '@/utils'
 
 export const metadata: Metadata = {
   title: 'Movie App',
@@ -17,9 +19,9 @@ export default function RootLayout(props: { children: ReactNode }) {
       <head>
         <ThemeModeScript />
       </head>
-      <body suppressHydrationWarning>
-        <Navigation />
+      <body className={clsx('antialiased', redditSans.variable)} suppressHydrationWarning>
         <MovieProvider>
+          <Navigation />
           <main className='absolute left-1/2 top-16 -z-10 w-full max-w-screen-2xl -translate-x-1/2' {...props} />
           <ScrollButton />
         </MovieProvider>
@@ -27,3 +29,13 @@ export default function RootLayout(props: { children: ReactNode }) {
     </html>
   )
 }
+
+const redditSans = localFont({
+  variable: '--font-reddit',
+  display: 'swap',
+  fallback: ['sans-serif'],
+  src: [
+    { path: '../../public/fonts/RedditSans.woff2', style: 'normal' },
+    { path: '../../public/fonts/RedditSans-Italic.woff2', style: 'italic' },
+  ],
+})
