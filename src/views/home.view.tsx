@@ -28,8 +28,8 @@ export default function HomeView() {
       />
       <MovieList isLoading={upcomingResult.isLoading} movies={nextMovies} />
       <MovieGrid
-        hasNextPage={topRatedResult.hasNextPage}
-        isFetchingNextPage={topRatedResult.isFetchingNextPage}
+        hasButton={topRatedResult.hasNextPage}
+        isFetching={topRatedResult.isFetchingNextPage}
         isLoading={topRatedResult.isLoading}
         movies={topRatedMovies}
         onClick={fetchMore}
