@@ -1,11 +1,9 @@
-'use client'
-
 import type { MovieData } from '@/types'
 import Image from 'next/image'
-import { useId } from 'react'
 import { LuThumbsUp } from 'react-icons/lu'
 
 export default function MovieSlide({
+  id,
   backdrop_path,
   backdrop_placeholder,
   poster_path,
@@ -14,10 +12,15 @@ export default function MovieSlide({
   title,
   vote_count,
 }: MovieData) {
-  const id = useId()
+  const slideId = id.toString()
 
   return (
-    <div aria-labelledby={id} aria-roledescription='slide' className='relative size-full overflow-hidden' role='group'>
+    <div
+      aria-labelledby={slideId}
+      aria-roledescription='slide'
+      className='relative size-full overflow-hidden'
+      role='group'
+    >
       <Image
         alt={title}
         blurDataURL={backdrop_placeholder}
@@ -39,7 +42,7 @@ export default function MovieSlide({
           />
         </div>
         <div className='flex h-full w-3/5 flex-col items-start justify-end ~gap-2/4 ~p-2/4 md:w-3/4'>
-          <h2 className='flex max-w-full grow items-center justify-start' id={id}>
+          <h2 className='flex max-w-full grow items-center justify-start' id={slideId}>
             <span className='truncate font-semibold uppercase ~text-xl/3xl'>{title}</span>
           </h2>
           <p className='line-clamp-4 italic ~text-sm/base'>{overview}</p>

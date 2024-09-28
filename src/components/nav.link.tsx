@@ -5,7 +5,7 @@ import { Navbar } from 'flowbite-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-interface NavLinkProps {
+export interface NavLinkProps {
   name: string
   href: Route
 }

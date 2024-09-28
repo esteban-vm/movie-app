@@ -1,11 +1,6 @@
-import type { MovieData } from '@/types'
+import type { ContainerProps as MovieListProps } from '@/types'
 import { LoadingSpinner, MovieItem } from '@/components'
 import { clsx } from '@/utils'
-
-interface MovieListProps {
-  isLoading: boolean
-  movies: MovieData[]
-}
 
 export default function MovieList({ isLoading, movies }: MovieListProps) {
   return (

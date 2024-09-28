@@ -1,16 +1,13 @@
-import type { MovieData } from '@/types'
+import type { LoadMoreButtonProps } from '@/components'
+import type { ContainerProps } from '@/types'
 import { LoadingSpinner, LoadMoreButton, MovieCard } from '@/components'
 import { clsx } from '@/utils'
 
-interface MovieGridProps {
-  isLoading: boolean
-  isFetching: boolean
+interface MovieGridProps extends ContainerProps, LoadMoreButtonProps {
   hasButton: boolean
-  movies: MovieData[]
-  onClick: () => void
 }
 
-export default function MovieGrid({ isLoading, isFetching, hasButton, movies, ...rest }: MovieGridProps) {
+export default function MovieGrid({ isLoading, hasButton, movies, ...rest }: MovieGridProps) {
   return (
     <div className={clsx('area-movie-grid', isLoading && 'cursor-wait')} role='grid'>
       {isLoading ? (
@@ -23,7 +20,7 @@ export default function MovieGrid({ isLoading, isFetching, hasButton, movies, ..
               <MovieCard key={index} {...movie} />
             ))}
           </div>
-          {hasButton && <LoadMoreButton isFetching={isFetching} {...rest} />}
+          {hasButton && <LoadMoreButton {...rest} />}
         </>
       )}
     </div>

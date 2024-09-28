@@ -1,13 +1,11 @@
-import type { MovieData } from '@/types'
+import type { ContainerProps } from '@/types'
 import { Carousel } from 'flowbite-react'
 import { LuChevronLeftCircle, LuChevronRightCircle } from 'react-icons/lu'
 import { LoadingSpinner, MovieSlide } from '@/components'
 import { clsx } from '@/utils'
 
-interface MovieCarouselProps {
-  isLoading: boolean
+interface MovieCarouselProps extends ContainerProps {
   isAnimated: boolean
-  movies: MovieData[]
   onChange: (value: number) => void
 }
 
