@@ -1,8 +1,11 @@
 'use server'
 
+import type { MovieData } from '@/types'
+import type { Movie } from 'tmdb-ts'
 import fs from 'fs'
 import path from 'path'
 import sharp from 'sharp'
+import { API_IMAGE_URL } from '@/constants'
 
 async function getFileBufferRemote(url: string) {
   const response = await fetch(url)
@@ -23,7 +26,7 @@ function toBase64PNG(str: string) {
   return `data:image/png;base64,${str}`
 }
 
-export async function getPlaceholderImage(str: string) {
+async function getPlaceholderImage(str: string) {
   try {
     const originalBuffer = await getFileBuffer(str)
     const resizedBuffer = await sharp(originalBuffer).resize(20).toBuffer()
@@ -32,4 +35,30 @@ export async function getPlaceholderImage(str: string) {
     const str = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsa2yqBwAFCAICLICSyQAAAABJRU5ErkJggg=='
     return toBase64PNG(str)
   }
+}
+
+export async function toMovieDataList(movies: Movie[]) {
+  let list: MovieData[]
+
+  try {
+    const callback = async (movie: Movie): Promise<MovieData> => {
+      const backdropPath = API_IMAGE_URL + movie.backdrop_path
+      const posterPath = API_IMAGE_URL + movie.poster_path
+      const backdropPl = await getPlaceholderImage(backdropPath)
+      const posterPl = await getPlaceholderImage(posterPath)
+      return {
+        ...movie,
+        backdrop_path: backdropPath,
+        poster_path: posterPath,
+        backdrop_placeholder: backdropPl,
+        poster_placeholder: posterPl,
+      }
+    }
+
+    list = await Promise.all(movies.map(callback))
+  } catch {
+    list = []
+  }
+
+  return list
 }
