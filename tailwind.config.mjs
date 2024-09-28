@@ -19,6 +19,9 @@ const tailwindConfig = {
       fontSize: {
         '2xs': '0.625rem',
       },
+      fontFamily: { 
+        reddit: 'var(--font-reddit)',
+      },
     },
   },
   plugins: [

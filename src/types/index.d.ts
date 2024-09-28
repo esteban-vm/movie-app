@@ -1,1 +1,1 @@
-export type MovieData = AppTypes.MovieData
+export type MovieData = App.MovieData

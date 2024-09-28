@@ -1,17 +1,16 @@
-'use client'
-
-import { useMemo } from 'react'
+import type { MovieData } from '@/types'
 import { LoadingSpinner, LoadMoreButton, MovieCard } from '@/components'
-import { useTopRatedMovies } from '@/hooks'
 import { clsx } from '@/utils'
 
-export default function MovieGrid() {
-  const { isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, data } = useTopRatedMovies()
+interface MovieGridProps {
+  isLoading: boolean
+  isFetchingNextPage: boolean
+  hasNextPage: boolean
+  movies: MovieData[]
+  onClick: () => void
+}
 
-  const movies = useMemo(() => {
-    return data?.pages.reduce((acc, page) => [...acc, ...page], [])
-  }, [data])
-
+export default function MovieGrid({ isLoading, isFetchingNextPage, hasNextPage, movies, ...rest }: MovieGridProps) {
   return (
     <div className={clsx('area-movie-grid', isLoading && 'cursor-wait')} role='grid'>
       {isLoading ? (
@@ -22,7 +21,7 @@ export default function MovieGrid() {
           <div className='flex w-full flex-wrap items-center justify-center gap-1 p-1'>
             {movies?.map((movie, index) => <MovieCard key={index} {...movie} />)}
           </div>
-          {hasNextPage && <LoadMoreButton isFetching={isFetchingNextPage} onClick={() => fetchNextPage()} />}
+          {hasNextPage && <LoadMoreButton isFetching={isFetchingNextPage} {...rest} />}
         </>
       )}
     </div>
