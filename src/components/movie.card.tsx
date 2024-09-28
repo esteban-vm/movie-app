@@ -1,11 +1,9 @@
-'use client'
-
 import type { MovieData } from '@/types'
 import { Card, Tooltip } from 'flowbite-react'
 import Image from 'next/image'
-import { useId } from 'react'
 
 export default function MovieCard({
+  id,
   original_language,
   poster_path,
   poster_placeholder,
@@ -13,14 +11,13 @@ export default function MovieCard({
   title,
   vote_average,
 }: MovieData) {
-  const id = useId()
+  const cardId = id.toString()
 
   return (
     <Tooltip content={title} role='tooltip' style='auto'>
       <Card
-        aria-labelledby={id}
+        aria-labelledby={cardId}
         className='group overflow-hidden border-2 bg-transparent ~w-[17rem]/72 hover:opacity-90'
-        role='gridcell'
         renderImage={() => {
           return (
             <div className='size-full overflow-hidden'>
@@ -39,7 +36,7 @@ export default function MovieCard({
         }}
       >
         <article>
-          <h3 className='mb-1 truncate font-semibold uppercase ~text-base/lg' id={id}>
+          <h3 className='mb-1 truncate font-semibold uppercase ~text-base/lg' id={cardId}>
             {title}
           </h3>
           <p className='border-b border-dashed border-white ~text-sm/base'>Rating: {vote_average.toFixed(1)}</p>
