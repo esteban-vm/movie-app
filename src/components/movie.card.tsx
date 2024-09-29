@@ -1,6 +1,7 @@
 import type { MovieData } from '@/types'
-import { Card, Tooltip } from 'flowbite-react'
+import { Card, Rating, RatingStar, Tooltip } from 'flowbite-react'
 import Image from 'next/image'
+import { locales } from '@/utils'
 
 export default function MovieCard({
   id,
@@ -39,10 +40,15 @@ export default function MovieCard({
           <h3 className='mb-1 truncate font-semibold uppercase ~text-base/lg' id={cardId}>
             {title}
           </h3>
-          <p className='border-b border-dashed border-white ~text-sm/base'>Rating: {vote_average.toFixed(1)}</p>
-          <p className='border-b border-dashed border-white ~text-sm/base'>Language: {original_language}</p>
+          <Rating className='border-b border-dashed border-white'>
+            <RatingStar />
+            <p className='~text-sm/base'>Rating: {vote_average.toFixed(1)}</p>
+          </Rating>
+          <p className='border-b border-dashed border-white ~text-sm/base'>
+            Language: {locales.formatLanguage(original_language)}
+          </p>
           <p className='truncate border-b border-dashed border-white ~text-sm/base'>
-            Release: {new Date(release_date).toLocaleDateString('en-US', { dateStyle: 'long' })}
+            Release: {locales.formatDate(release_date)}
           </p>
         </article>
       </Card>
