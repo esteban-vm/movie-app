@@ -4,17 +4,18 @@ import { LoadingSpinner, LoadMoreButton, MovieCard } from '@/components'
 import { clsx } from '@/utils'
 
 interface MovieGridProps extends ContainerProps, LoadMoreButtonProps {
-  hasButton: boolean
+  title: string
+  hasButton?: boolean
 }
 
-export default function MovieGrid({ isLoading, hasButton, movies, ...rest }: MovieGridProps) {
+export default function MovieGrid({ title, isLoading, hasButton, movies, ...rest }: MovieGridProps) {
   return (
     <div className={clsx('area-movie-grid', isLoading && 'cursor-wait')} role='grid'>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
         <>
-          <h2 className='font-bold uppercase ~text-xl/2xl'>Top Rated</h2>
+          <h2 className='font-bold uppercase ~text-xl/2xl'>{title}</h2>
           <div className='flex w-full flex-wrap items-center justify-center gap-1 p-1'>
             {movies.map((movie, index) => (
               <MovieCard key={index} {...movie} />
