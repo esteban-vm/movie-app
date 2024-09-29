@@ -1,14 +1,14 @@
 import { useMemo } from 'react'
 import { MovieCarousel, MovieGrid, MovieList } from '@/containers'
-import * as hooks from '@/hooks'
+import { api, ui } from '@/hooks'
 
 export default function HomeView() {
-  const topRatedResult = hooks.useTopRatedMovies()
-  const upcomingResult = hooks.useUpcomingMovies()
-  const { isAnimated } = hooks.useMovieCarousel()
+  const topRatedResult = api.useTopRatedMovies()
+  const upcomingResult = api.useUpcomingMovies()
+  const { isAnimated } = ui.useMovieCarousel()
 
   const upcomingMovies = upcomingResult.data ?? []
-  const { nextMovies, setCurrent } = hooks.useMovieList(upcomingMovies)
+  const { nextMovies, setCurrent } = ui.useMovieList(upcomingMovies)
 
   const topRatedMovies = useMemo(() => {
     return topRatedResult.data?.pages.reduce((acc, page) => [...acc, ...page], []) ?? []
@@ -32,6 +32,7 @@ export default function HomeView() {
         isFetching={topRatedResult.isFetchingNextPage}
         isLoading={topRatedResult.isLoading}
         movies={topRatedMovies}
+        title='Top Rated'
         onClick={fetchMore}
       />
     </section>

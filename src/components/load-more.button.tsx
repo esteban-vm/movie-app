@@ -1,8 +1,8 @@
 import { Button } from 'flowbite-react'
 
 export interface LoadMoreButtonProps {
-  isFetching: boolean
-  onClick: () => void
+  isFetching?: boolean
+  onClick?: () => void
 }
 
 export default function LoadMoreButton({ isFetching, ...rest }: LoadMoreButtonProps) {
