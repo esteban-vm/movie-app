@@ -1,11 +1,7 @@
-export default function Movies() {
+export default function NowPlayingPage() {
   return (
     <div>
-      <ul className='flex'>
-        {['Now Playing', 'Popular', 'Top Rated', 'Upcoming'].map((item) => (
-          <li key={crypto.randomUUID()}>{item}</li>
-        ))}{' '}
-      </ul>
+      <h3>Now Playing Page</h3>
     </div>
   )
 }
