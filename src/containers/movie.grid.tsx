@@ -8,7 +8,7 @@ interface MovieGridProps extends ContainerProps, LoadMoreButtonProps {
   hasButton?: boolean
 }
 
-export default function MovieGrid({ title, isLoading, hasButton, movies, ...rest }: MovieGridProps) {
+export default function MovieGrid({ title, isLoading, hasButton, movies = [], ...rest }: MovieGridProps) {
   return (
     <div className={clsx('area-movie-grid', isLoading && 'cursor-wait')} role='grid'>
       {isLoading ? (
