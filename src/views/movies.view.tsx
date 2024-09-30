@@ -1,35 +1,49 @@
 import { Tabs } from 'flowbite-react'
-import { FaCouch, FaFire, FaHourglassHalf } from 'react-icons/fa6'
+import { FaCouch, FaFire, FaHourglassHalf, FaStar } from 'react-icons/fa6'
+import { MovieListNames } from '@/constants'
 import { MovieGrid } from '@/containers'
 import { api } from '@/hooks'
 
 export default function MoviesView() {
-  const nowPlaying = api.useNowPlayingMovies()
-  const popular = api.usePopularMovies()
-  const upcoming = api.useUpcomingMovies()
-
-  const nowPlayingTitle = 'Now Playing'
-  const popularTitle = 'Popular'
-  const upcomingTitle = 'Upcoming'
+  const nowPlayingMoviesQuery = api.useNowPlayingMovies()
+  const popularMoviesQuery = api.usePopularMovies()
+  const topRatedMoviesQuery = api.useTopRatedMovies()
+  const upcomingMoviesQuery = api.useUpcomingMovies()
 
   return (
     <section>
       <h2 className='text-xl'>Explore Movies</h2>
-      <Tabs variant='underline'>
-        <Tabs.Item icon={FaCouch} title={nowPlayingTitle} active>
-          <MovieGrid isLoading={nowPlaying.isLoading} movies={nowPlaying.data ?? []} title={nowPlayingTitle} />
+      <Tabs className='[&_button]:focus:!ring-0' variant='underline'>
+        <Tabs.Item icon={FaCouch} title={MovieListNames.nowPlaying}>
+          <MovieGrid
+            isLoading={nowPlayingMoviesQuery.isLoading}
+            movies={nowPlayingMoviesQuery.data ?? []}
+            title={MovieListNames.nowPlaying}
+          />
         </Tabs.Item>
 
-        <Tabs.Item icon={FaFire} title={popularTitle}>
-          <MovieGrid isLoading={popular.isLoading} movies={popular.data ?? []} title={popularTitle} />
+        <Tabs.Item icon={FaFire} title={MovieListNames.popular}>
+          <MovieGrid
+            isLoading={popularMoviesQuery.isLoading}
+            movies={popularMoviesQuery.data ?? []}
+            title={MovieListNames.popular}
+          />
         </Tabs.Item>
 
-        {/* <Tabs.Item icon={FaStar} title='Top Rated'>
-          <MovieGrid isLoading={topRated.isLoading} movies={topRated.data ?? []} title='Popular' />
-        </Tabs.Item> */}
+        <Tabs.Item icon={FaStar} title={MovieListNames.topRated}>
+          <MovieGrid
+            isLoading={topRatedMoviesQuery.isLoading}
+            movies={topRatedMoviesQuery.data?.pages[0] ?? []}
+            title={MovieListNames.topRated}
+          />
+        </Tabs.Item>
 
-        <Tabs.Item icon={FaHourglassHalf} title={upcomingTitle}>
-          <MovieGrid isLoading={upcoming.isLoading} movies={upcoming.data ?? []} title={upcomingTitle} />
+        <Tabs.Item icon={FaHourglassHalf} title={MovieListNames.upcoming}>
+          <MovieGrid
+            isLoading={upcomingMoviesQuery.isLoading}
+            movies={upcomingMoviesQuery.data ?? []}
+            title={MovieListNames.upcoming}
+          />
         </Tabs.Item>
       </Tabs>
     </section>

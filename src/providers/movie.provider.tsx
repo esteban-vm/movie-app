@@ -5,7 +5,7 @@ import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experime
 import { useState } from 'react'
 
 export default function MovieProvider(props: { children: ReactNode }) {
-  const [client] = useState(new QueryClient())
+  const [client] = useState(() => new QueryClient())
 
   return (
     <QueryClientProvider client={client}>
