@@ -25,6 +25,7 @@
     "use-debounce": "^10.0.3"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.58.1",
     "@tanstack/react-query-devtools": "^5.56.2",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^15.0.7",
