@@ -3,34 +3,34 @@ import { MovieCarousel, MovieGrid, MovieList } from '@/containers'
 import { api, ui } from '@/hooks'
 
 export default function HomeView() {
-  const topRatedResult = api.useTopRatedMovies()
-  const upcomingResult = api.useUpcomingMovies()
+  const topRatedMoviesQuery = api.useTopRatedMovies()
+  const upcomingMoviesQuery = api.useUpcomingMovies()
   const { isAnimated } = ui.useMovieCarousel()
 
-  const upcomingMovies = upcomingResult.data ?? []
+  const upcomingMovies = upcomingMoviesQuery.data ?? []
   const { nextMovies, setCurrent } = ui.useMovieList(upcomingMovies)
 
   const topRatedMovies = useMemo(() => {
-    return topRatedResult.data?.pages.reduce((acc, page) => [...acc, ...page], []) ?? []
-  }, [topRatedResult.data])
+    return topRatedMoviesQuery.data?.pages.reduce((acc, page) => [...acc, ...page], []) ?? []
+  }, [topRatedMoviesQuery.data])
 
   const fetchMore = () => {
-    topRatedResult.fetchNextPage()
+    topRatedMoviesQuery.fetchNextPage()
   }
 
   return (
     <section className='grid grid-cols-1 ~gap-1/2 ~p-1/2 grid-areas-home md:grid-cols-3'>
       <MovieCarousel
         isAnimated={isAnimated}
-        isLoading={upcomingResult.isLoading}
+        isLoading={upcomingMoviesQuery.isLoading}
         movies={upcomingMovies}
         onChange={setCurrent}
       />
-      <MovieList isLoading={upcomingResult.isLoading} movies={nextMovies} />
+      <MovieList isLoading={upcomingMoviesQuery.isLoading} movies={nextMovies} />
       <MovieGrid
-        hasButton={topRatedResult.hasNextPage}
-        isFetching={topRatedResult.isFetchingNextPage}
-        isLoading={topRatedResult.isLoading}
+        hasButton={topRatedMoviesQuery.hasNextPage}
+        isFetching={topRatedMoviesQuery.isFetchingNextPage}
+        isLoading={topRatedMoviesQuery.isLoading}
         movies={topRatedMovies}
         title='Top Rated'
         onClick={fetchMore}
