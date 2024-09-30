@@ -13,7 +13,7 @@ export default function MoviesView() {
   return (
     <section>
       <h2 className='text-xl'>Explore Movies</h2>
-      <Tabs className='[&_button]:focus:!ring-0' variant='underline'>
+      <Tabs variant='underline'>
         <Tabs.Item icon={FaCouch} title={ListNames.nowPlaying}>
           <MovieGrid isLoading={nowPlayingQuery.isLoading} movies={nowPlayingQuery.data} title={ListNames.nowPlaying} />
         </Tabs.Item>
