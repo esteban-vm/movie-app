@@ -5,7 +5,7 @@ import { clsx } from '@/utils'
 
 interface MovieGridProps extends ContainerProps, LoadMoreButtonProps {
   title: string
-  hasButton?: boolean
+  hasButton: boolean
 }
 
 export default function MovieGrid({ title, isLoading, hasButton, movies = [], ...rest }: MovieGridProps) {
