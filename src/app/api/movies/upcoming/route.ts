@@ -1,9 +1,10 @@
 import { tmdb } from '@/api/config'
-import { toMovieDataList } from '@/utils'
+import { extractPageNumber, toMovieDataList } from '@/utils'
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const { results } = await tmdb.movies.upcoming()
+    const page = extractPageNumber(request)
+    const { results } = await tmdb.movies.upcoming({ page })
     const movies = await toMovieDataList(results)
     return Response.json(movies, { status: 200 })
   } catch (error) {
