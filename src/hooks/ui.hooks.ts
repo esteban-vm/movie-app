@@ -16,12 +16,12 @@ export const useMovieCarousel = () => {
   return { isAnimated }
 }
 
-export const useMovieList = (movies: MovieData[]) => {
+export const useMovieList = (movies?: MovieData[]) => {
   const [current, setCurrent] = useState(0)
   const [nextMovies, setNextMovies] = useState<MovieData[]>([])
 
   useEffect(() => {
-    const total = movies.length
+    const total = movies?.length
 
     if (total) {
       const index1 = (current + 1) % total

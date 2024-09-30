@@ -2,7 +2,7 @@ import type { ContainerProps as MovieListProps } from '@/types'
 import { LoadingSpinner, MovieItem } from '@/components'
 import { clsx } from '@/utils'
 
-export default function MovieList({ isLoading, movies }: MovieListProps) {
+export default function MovieList({ isLoading, movies = [] }: MovieListProps) {
   return (
     <aside className={clsx('area-movie-list', isLoading && 'cursor-wait')} role='list'>
       {isLoading ? (

@@ -1,6 +1,6 @@
 export const { API_KEY, API_IMAGE_URL, NEXT_PUBLIC_API_URL } = process.env
 
-export const MovieListNames = <const>{
+export const ListNames = <const>{
   nowPlaying: 'Now Playing',
   popular: 'Popular',
   topRated: 'Top Rated',

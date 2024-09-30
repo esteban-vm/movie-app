@@ -9,7 +9,7 @@ interface MovieCarouselProps extends ContainerProps {
   onChange: (value: number) => void
 }
 
-export default function MovieCarousel({ isLoading, isAnimated, movies, onChange }: MovieCarouselProps) {
+export default function MovieCarousel({ isLoading, isAnimated, movies = [], onChange }: MovieCarouselProps) {
   return (
     <div className={clsx('area-movie-carousel', isLoading && 'cursor-wait')}>
       {isLoading ? (
