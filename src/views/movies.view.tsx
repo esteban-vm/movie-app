@@ -18,9 +18,8 @@ export default function MoviesView() {
   const upcomingMovies = useMemo(() => reducerHelper(upcoming.data), [upcoming.data])
 
   return (
-    <section>
-      <h2 className='text-xl'>Explore Movies</h2>
-      <Tabs variant='underline'>
+    <section className='overflow-x-auto'>
+      <Tabs variant='fullWidth'>
         <Tabs.Item icon={FaCouch} title={ListNames.nowPlaying}>
           <MovieGrid
             hasButton={nowPlaying.hasNextPage}
