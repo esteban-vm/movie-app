@@ -1,10 +1,11 @@
 import type { LoadMoreButtonProps } from '@/components'
+import type { ListNames } from '@/constants'
 import type { ContainerProps } from '@/types'
 import { LoadingSpinner, LoadMoreButton, MovieCard } from '@/components'
 import { clsx } from '@/utils'
 
 interface MovieGridProps extends ContainerProps, LoadMoreButtonProps {
-  title: string
+  title: (typeof ListNames)[keyof typeof ListNames]
   hasButton: boolean
 }
 
