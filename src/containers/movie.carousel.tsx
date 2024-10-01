@@ -8,9 +8,9 @@ interface MovieCarouselProps extends ContainerProps {
   onChange: (value: number) => void
 }
 
-export default function MovieCarousel({ isLoading, isAnimated, movies = [], onChange }: MovieCarouselProps) {
+export default function MovieCarousel({ isAnimated, movies = [], onChange, ...rest }: MovieCarouselProps) {
   return (
-    <LoaderWrapper className='area-movie-carousel' isLoading={isLoading}>
+    <LoaderWrapper className='area-movie-carousel' {...rest}>
       <Carousel
         aria-label='Movie Carousel'
         aria-live='polite'
