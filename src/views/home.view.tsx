@@ -1,13 +1,13 @@
 import { useMemo } from 'react'
 import { MovieCarousel, MovieGrid, MovieList } from '@/containers'
 import { queries, ui } from '@/hooks'
-import { reducerHelper } from '@/utils'
+import { toMovieDataArray } from '@/utils'
 
 export default function HomeView() {
   const topRated = queries.useTopRatedMovies()
   const firstUpcoming = queries.useFirstUpcomingMovies()
   const { isAnimated } = ui.useMovieCarousel()
-  const topRatedMovies = useMemo(() => reducerHelper(topRated.data), [topRated.data])
+  const topRatedMovies = useMemo(() => toMovieDataArray(topRated.data), [topRated.data])
   const { nextMovies, setCurrent } = ui.useMovieList(firstUpcoming.data)
 
   return (
