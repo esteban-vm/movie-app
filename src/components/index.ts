@@ -1,5 +1,5 @@
 export { default as LoadMoreButton, type LoadMoreButtonProps } from './load-more.button'
-export { default as LoadingSpinner } from './loading.spinner'
+export { default as LoaderWrapper, type LoaderWrapperProps } from './loader.wrapper'
 export { default as MovieCard } from './movie.card'
 export { default as MovieItem } from './movie.item'
 export { default as MovieSlide } from './movie.slide'

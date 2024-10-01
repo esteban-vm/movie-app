@@ -23,8 +23,15 @@
   }
 
   .area-movie-carousel,
-  .area-movie-list,
-  .area-movie-grid {
+  .area-movie-grid,
+  .area-movie-list {
     @apply flex flex-col items-center justify-center gap-1 rounded-lg bg-indigo-700 p-1 text-white;
+  }
+
+  .area-movie-grid,
+  .area-movie-list {
+    h2 {
+      @apply font-bold uppercase ~text-xl/2xl;
+    }
   }
 }

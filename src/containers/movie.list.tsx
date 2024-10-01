@@ -1,22 +1,15 @@
 import type { ContainerProps as MovieListProps } from '@/types'
-import { LoadingSpinner, MovieItem } from '@/components'
-import { clsx } from '@/utils'
+import { LoaderWrapper, MovieItem } from '@/components'
 
 export default function MovieList({ isLoading, movies = [] }: MovieListProps) {
   return (
-    <aside className={clsx('area-movie-list', isLoading && 'cursor-wait')} role='list'>
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
-          <h2 className='font-bold uppercase ~text-xl/2xl'>Up Next</h2>
-          <div className='flex w-full grow flex-col gap-1'>
-            {movies.map((movie, index) => (
-              <MovieItem key={index} {...movie} />
-            ))}
-          </div>
-        </>
-      )}
-    </aside>
+    <LoaderWrapper className='area-movie-list' isLoading={isLoading} role='list'>
+      <h2>Up Next</h2>
+      <div className='flex w-full grow flex-col gap-1'>
+        {movies.map((movie, index) => (
+          <MovieItem key={index} {...movie} />
+        ))}
+      </div>
+    </LoaderWrapper>
   )
 }
