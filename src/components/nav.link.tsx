@@ -6,16 +6,16 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export interface NavLinkProps {
-  name: string
+  title: string
   href: Route
 }
 
-export default function NavLink({ name, href }: NavLinkProps) {
+export default function NavLink({ title, href }: NavLinkProps) {
   const pathname = usePathname()
 
   return (
     <Navbar.Link active={pathname === href} as={Link} className='uppercase ~text-xs/sm' href={href}>
-      {name}
+      {title}
     </Navbar.Link>
   )
 }
