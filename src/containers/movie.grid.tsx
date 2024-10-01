@@ -1,8 +1,7 @@
 import type { LoadMoreButtonProps } from '@/components'
 import type { ListNames } from '@/constants'
 import type { ContainerProps } from '@/types'
-import { LoadingSpinner, LoadMoreButton, MovieCard } from '@/components'
-import { clsx } from '@/utils'
+import { LoaderWrapper, LoadMoreButton, MovieCard } from '@/components'
 
 interface MovieGridProps extends ContainerProps, LoadMoreButtonProps {
   title: (typeof ListNames)[keyof typeof ListNames]
@@ -11,20 +10,14 @@ interface MovieGridProps extends ContainerProps, LoadMoreButtonProps {
 
 export default function MovieGrid({ title, isLoading, hasButton, movies = [], ...rest }: MovieGridProps) {
   return (
-    <div className={clsx('area-movie-grid', isLoading && 'cursor-wait')} role='grid'>
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
-          <h2 className='font-bold uppercase ~text-xl/2xl'>{title}</h2>
-          <div className='flex w-full flex-wrap items-center justify-center gap-1 p-1'>
-            {movies.map((movie, index) => (
-              <MovieCard key={index} {...movie} />
-            ))}
-          </div>
-          {hasButton && <LoadMoreButton {...rest} />}
-        </>
-      )}
-    </div>
+    <LoaderWrapper className='area-movie-grid' isLoading={isLoading} role='grid'>
+      <h2>{title}</h2>
+      <div className='flex w-full flex-wrap items-center justify-center gap-1'>
+        {movies.map((movie, index) => (
+          <MovieCard key={index} {...movie} />
+        ))}
+      </div>
+      {hasButton && <LoadMoreButton {...rest} />}
+    </LoaderWrapper>
   )
 }
