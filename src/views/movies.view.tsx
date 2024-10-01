@@ -4,7 +4,7 @@ import { FaCouch, FaFire, FaHourglassHalf, FaStar } from 'react-icons/fa6'
 import { ListNames } from '@/constants'
 import { MovieGrid } from '@/containers'
 import { queries } from '@/hooks'
-import { reducerHelper } from '@/utils'
+import { toMovieDataArray } from '@/utils'
 
 export default function MoviesView() {
   const nowPlaying = queries.useNowPlayingMovies()
@@ -12,10 +12,10 @@ export default function MoviesView() {
   const topRated = queries.useTopRatedMovies()
   const upcoming = queries.useUpcomingMovies()
 
-  const nowPlayingMovies = useMemo(() => reducerHelper(nowPlaying.data), [nowPlaying.data])
-  const popularMovies = useMemo(() => reducerHelper(popular.data), [popular.data])
-  const topRatedMovies = useMemo(() => reducerHelper(topRated.data), [topRated.data])
-  const upcomingMovies = useMemo(() => reducerHelper(upcoming.data), [upcoming.data])
+  const nowPlayingMovies = useMemo(() => toMovieDataArray(nowPlaying.data), [nowPlaying.data])
+  const popularMovies = useMemo(() => toMovieDataArray(popular.data), [popular.data])
+  const topRatedMovies = useMemo(() => toMovieDataArray(topRated.data), [topRated.data])
+  const upcomingMovies = useMemo(() => toMovieDataArray(upcoming.data), [upcoming.data])
 
   return (
     <section className='overflow-x-auto'>

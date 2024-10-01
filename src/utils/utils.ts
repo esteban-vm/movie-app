@@ -14,6 +14,6 @@ export function extractPageNumber(request: Request) {
   return page
 }
 
-export function reducerHelper(data?: InfiniteData<MovieData[], unknown>) {
+export function toMovieDataArray(data?: InfiniteData<MovieData[], unknown>) {
   return data?.pages.reduce((acc, page) => [...acc, ...page], [])
 }

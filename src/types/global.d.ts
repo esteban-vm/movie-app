@@ -9,7 +9,7 @@ declare global {
     }
   }
 
-  namespace App {
+  namespace Types {
     interface MovieData extends Movie {
       backdrop_placeholder: string
       poster_placeholder: string

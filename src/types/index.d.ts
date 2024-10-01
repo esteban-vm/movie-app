@@ -3,4 +3,4 @@ export interface ContainerProps {
   movies?: MovieData[]
 }
 
-export type MovieData = App.MovieData
+export type MovieData = Types.MovieData
