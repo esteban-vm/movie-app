@@ -1,5 +1,4 @@
 import type { MovieData } from '@/types'
-import type { InfiniteData } from '@tanstack/react-query'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { queries } from '@/utils'
 
@@ -24,7 +23,7 @@ const queryOptions = {
 }
 
 export const useNowPlayingMovies = () => {
-  return useInfiniteQuery<MovieData[], Error, InfiniteData<MovieData[], unknown>, string[], number>({
+  return useInfiniteQuery({
     queryKey: ['now-playing'],
     queryFn: queries.getNowPlayingMovies,
     ...queryOptions,
