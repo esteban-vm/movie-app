@@ -1,13 +1,7 @@
 import type { MovieData } from '@/types'
-import type { GetNextPageParamFunction } from '@tanstack/react-query'
+import type { InfiniteData } from '@tanstack/react-query'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { queries } from '@/utils'
-
-const initialPageParam = 1
-
-const getNextPageParam: GetNextPageParamFunction<number, MovieData[]> = (lastPage, allPages) => {
-  return lastPage.length > 0 ? allPages.length + 1 : undefined
-}
 
 export const useFirstUpcomingMovies = () => {
   return useQuery({
@@ -16,12 +10,24 @@ export const useFirstUpcomingMovies = () => {
   })
 }
 
+const queryOptions = {
+  initialPageParam: 1,
+  maxPages: 3,
+  getNextPageParam(lastPage: MovieData[], _: MovieData[][], lastPageParam: number) {
+    if (lastPage.length === 0) return undefined
+    return lastPageParam + 1
+  },
+  getPreviousPageParam: (_: MovieData[], __: MovieData[][], firstPageParam: number) => {
+    if (firstPageParam <= 1) return undefined
+    return firstPageParam - 1
+  },
+}
+
 export const useNowPlayingMovies = () => {
-  return useInfiniteQuery({
+  return useInfiniteQuery<MovieData[], Error, InfiniteData<MovieData[], unknown>, string[], number>({
     queryKey: ['now-playing'],
     queryFn: queries.getNowPlayingMovies,
-    initialPageParam,
-    getNextPageParam,
+    ...queryOptions,
   })
 }
 
@@ -29,8 +35,7 @@ export const usePopularMovies = () => {
   return useInfiniteQuery({
     queryKey: ['popular'],
     queryFn: queries.getPopularMovies,
-    initialPageParam,
-    getNextPageParam,
+    ...queryOptions,
   })
 }
 
@@ -38,8 +43,7 @@ export const useTopRatedMovies = () => {
   return useInfiniteQuery({
     queryKey: ['top-rated'],
     queryFn: queries.getTopRatedMovies,
-    initialPageParam,
-    getNextPageParam,
+    ...queryOptions,
   })
 }
 
@@ -47,7 +51,6 @@ export const useUpcomingMovies = () => {
   return useInfiniteQuery({
     queryKey: ['upcoming'],
     queryFn: queries.getUpcomingMovies,
-    initialPageParam,
-    getNextPageParam,
+    ...queryOptions,
   })
 }
