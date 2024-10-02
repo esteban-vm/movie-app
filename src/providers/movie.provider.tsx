@@ -7,7 +7,12 @@ import { useState } from 'react'
 export default function MovieProvider(props: { children: ReactNode }) {
   const [client] = useState(() => {
     return new QueryClient({
-      defaultOptions: { queries: { refetchOnWindowFocus: false } },
+      defaultOptions: {
+        queries: {
+          staleTime: Infinity,
+          refetchOnWindowFocus: false,
+        },
+      },
     })
   })
 
