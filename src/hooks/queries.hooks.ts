@@ -4,14 +4,20 @@ import { queries } from '@/utils'
 
 export const useFirstUpcomingMovies = () => {
   return useQuery({
-    queryKey: ['first-upcoming'],
+    queryKey: ['first-upcoming-movies'],
     queryFn: queries.getFirstUpcomingMovies,
   })
 }
 
-const queryOptions = {
+export const useMoviesByName = (name: string) => {
+  return useQuery({
+    queryKey: ['Movie:', name],
+    queryFn: async () => await queries.getMovieByName(name),
+  })
+}
+
+const infiniteQueryOptions = {
   initialPageParam: 1,
-  maxPages: 3,
   getNextPageParam(lastPage: MovieData[], _: MovieData[][], lastPageParam: number) {
     if (lastPage.length === 0) return undefined
     return lastPageParam + 1
@@ -24,32 +30,32 @@ const queryOptions = {
 
 export const useNowPlayingMovies = () => {
   return useInfiniteQuery({
-    queryKey: ['now-playing'],
+    queryKey: ['Now Playing Movies'],
     queryFn: queries.getNowPlayingMovies,
-    ...queryOptions,
+    ...infiniteQueryOptions,
   })
 }
 
 export const usePopularMovies = () => {
   return useInfiniteQuery({
-    queryKey: ['popular'],
+    queryKey: ['Popular Movies'],
     queryFn: queries.getPopularMovies,
-    ...queryOptions,
+    ...infiniteQueryOptions,
   })
 }
 
 export const useTopRatedMovies = () => {
   return useInfiniteQuery({
-    queryKey: ['top-rated'],
+    queryKey: ['Top Rated Movies'],
     queryFn: queries.getTopRatedMovies,
-    ...queryOptions,
+    ...infiniteQueryOptions,
   })
 }
 
 export const useUpcomingMovies = () => {
   return useInfiniteQuery({
-    queryKey: ['upcoming'],
+    queryKey: ['Upcoming Movies'],
     queryFn: queries.getUpcomingMovies,
-    ...queryOptions,
+    ...infiniteQueryOptions,
   })
 }

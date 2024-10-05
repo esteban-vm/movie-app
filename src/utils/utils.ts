@@ -8,6 +8,12 @@ const twClsx = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
 
 export { twClsx as clsx }
 
+export function extractMovieName(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const name = searchParams.get('query') ?? ''
+  return name
+}
+
 export function extractPageNumber(request: Request) {
   const { searchParams } = new URL(request.url)
   const page = Number(searchParams.get('page')) || 1

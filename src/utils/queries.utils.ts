@@ -13,14 +13,32 @@ export async function getFirstUpcomingMovies() {
   return data
 }
 
-function makeQueryWithParams(url: Route) {
-  return async ({ pageParam }: { pageParam: number }) => {
-    const { data } = await axiosInstance.get<MovieData[]>(url, { params: { page: pageParam } })
-    return data
-  }
+export async function getMovieByName(name: string) {
+  const url: Route = '/api/search/movies'
+  const { data } = await axiosInstance.get<MovieData[]>(url, { params: { query: name } })
+  return data
 }
 
-export const getNowPlayingMovies = makeQueryWithParams('/api/movies/now-playing')
-export const getPopularMovies = makeQueryWithParams('/api/movies/popular')
-export const getTopRatedMovies = makeQueryWithParams('/api/movies/top-rated')
-export const getUpcomingMovies = makeQueryWithParams('/api/movies/upcoming')
+export async function getNowPlayingMovies({ pageParam }: { pageParam: number }) {
+  const url: Route = '/api/movies/now-playing'
+  const { data } = await axiosInstance.get<MovieData[]>(url, { params: { page: pageParam } })
+  return data
+}
+
+export async function getPopularMovies({ pageParam }: { pageParam: number }) {
+  const url: Route = '/api/movies/popular'
+  const { data } = await axiosInstance.get<MovieData[]>(url, { params: { page: pageParam } })
+  return data
+}
+
+export async function getTopRatedMovies({ pageParam }: { pageParam: number }) {
+  const url: Route = '/api/movies/top-rated'
+  const { data } = await axiosInstance.get<MovieData[]>(url, { params: { page: pageParam } })
+  return data
+}
+
+export async function getUpcomingMovies({ pageParam }: { pageParam: number }) {
+  const url: Route = '/api/movies/upcoming'
+  const { data } = await axiosInstance.get<MovieData[]>(url, { params: { page: pageParam } })
+  return data
+}

@@ -6,6 +6,14 @@
   * {
     @apply font-reddit;
   }
+
+  button[role='tab'] {
+    @apply truncate;
+
+    & svg {
+      @apply hidden md:inline;
+    }
+  }
 }
 
 @layer components {

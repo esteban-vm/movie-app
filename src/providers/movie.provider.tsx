@@ -9,6 +9,7 @@ export default function MovieProvider(props: { children: ReactNode }) {
     return new QueryClient({
       defaultOptions: {
         queries: {
+          maxPages: 3,
           staleTime: Infinity,
           refetchOnWindowFocus: false,
         },
