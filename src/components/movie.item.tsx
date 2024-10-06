@@ -1,7 +1,7 @@
 import type { MovieData } from '@/types'
 import Image from 'next/image'
 import { LuThumbsUp } from 'react-icons/lu'
-import { locales } from '@/utils'
+import { intlUtils } from '@/utils'
 
 export default function MovieItem({ id, poster_path, poster_placeholder, overview, title, vote_count }: MovieData) {
   const itemId = id.toString()
@@ -30,7 +30,7 @@ export default function MovieItem({ id, poster_path, poster_placeholder, overvie
         <p className='~text-xs/base'>
           <LuThumbsUp className='inline' />
           &nbsp;
-          <span className='align-middle'>{locales.formatNumber(vote_count)}</span>
+          <span className='align-middle'>{intlUtils.formatNumber(vote_count)}</span>
         </p>
       </div>
     </div>

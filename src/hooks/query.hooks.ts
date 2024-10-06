@@ -1,18 +1,18 @@
 import type { MovieData } from '@/types'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
-import { queries } from '@/utils'
+import { apiUtils, queryUtils } from '@/utils'
 
 export const useFirstUpcomingMovies = () => {
   return useQuery({
-    queryKey: ['first-upcoming-movies'],
-    queryFn: queries.getFirstUpcomingMovies,
+    queryKey: queryUtils.keys.movies.firstUpcoming,
+    queryFn: apiUtils.getFirstUpcomingMovies,
   })
 }
 
 export const useMoviesByName = (name: string) => {
   return useQuery({
-    queryKey: ['Movie:', name],
-    queryFn: async () => await queries.getMovieByName(name),
+    queryKey: queryUtils.keys.search.byName(name),
+    queryFn: async () => await apiUtils.getMovieByName(name),
   })
 }
 
@@ -30,32 +30,32 @@ const infiniteQueryOptions = {
 
 export const useNowPlayingMovies = () => {
   return useInfiniteQuery({
-    queryKey: ['Now Playing Movies'],
-    queryFn: queries.getNowPlayingMovies,
+    queryKey: queryUtils.keys.movies.nowPlaying,
+    queryFn: apiUtils.getNowPlayingMovies,
     ...infiniteQueryOptions,
   })
 }
 
 export const usePopularMovies = () => {
   return useInfiniteQuery({
-    queryKey: ['Popular Movies'],
-    queryFn: queries.getPopularMovies,
+    queryKey: queryUtils.keys.movies.popular,
+    queryFn: apiUtils.getPopularMovies,
     ...infiniteQueryOptions,
   })
 }
 
 export const useTopRatedMovies = () => {
   return useInfiniteQuery({
-    queryKey: ['Top Rated Movies'],
-    queryFn: queries.getTopRatedMovies,
+    queryKey: queryUtils.keys.movies.topRated,
+    queryFn: apiUtils.getTopRatedMovies,
     ...infiniteQueryOptions,
   })
 }
 
 export const useUpcomingMovies = () => {
   return useInfiniteQuery({
-    queryKey: ['Upcoming Movies'],
-    queryFn: queries.getUpcomingMovies,
+    queryKey: queryUtils.keys.movies.upcoming,
+    queryFn: apiUtils.getUpcomingMovies,
     ...infiniteQueryOptions,
   })
 }

@@ -37,8 +37,8 @@ async function getPlaceholderImage(str: string) {
   }
 }
 
-export async function toMovieDataList(movies: Movie[]) {
-  let list: MovieData[]
+export async function formatMovieList(movies: Movie[]) {
+  let data: MovieData[]
 
   try {
     const callback = async (movie: Movie): Promise<MovieData> => {
@@ -46,6 +46,7 @@ export async function toMovieDataList(movies: Movie[]) {
       const posterPath = API_IMAGE_URL + movie.poster_path
       const backdropPl = await getPlaceholderImage(backdropPath)
       const posterPl = await getPlaceholderImage(posterPath)
+
       return {
         ...movie,
         backdrop_path: backdropPath,
@@ -55,10 +56,22 @@ export async function toMovieDataList(movies: Movie[]) {
       }
     }
 
-    list = await Promise.all(movies.map(callback))
+    data = await Promise.all(movies.map(callback))
   } catch {
-    list = []
+    data = []
   }
 
-  return list
+  return data
+}
+
+export async function getMovieName(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const name = searchParams.get('query') ?? ''
+  return name
+}
+
+export async function getPageNumber(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const page = Number(searchParams.get('page')) || 1
+  return page
 }

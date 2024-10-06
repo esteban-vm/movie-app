@@ -3,19 +3,19 @@ import { useMemo } from 'react'
 import { FaCouch, FaFire, FaHourglassHalf, FaStar } from 'react-icons/fa6'
 import { ListNames } from '@/constants'
 import { MovieGrid } from '@/containers'
-import { queries } from '@/hooks'
-import { toMovieDataArray } from '@/utils'
+import { queryHooks } from '@/hooks'
+import { queryUtils } from '@/utils'
 
 export default function MoviesView() {
-  const nowPlaying = queries.useNowPlayingMovies()
-  const popular = queries.usePopularMovies()
-  const topRated = queries.useTopRatedMovies()
-  const upcoming = queries.useUpcomingMovies()
+  const nowPlaying = queryHooks.useNowPlayingMovies()
+  const popular = queryHooks.usePopularMovies()
+  const topRated = queryHooks.useTopRatedMovies()
+  const upcoming = queryHooks.useUpcomingMovies()
 
-  const nowPlayingMovies = useMemo(() => toMovieDataArray(nowPlaying.data), [nowPlaying.data])
-  const popularMovies = useMemo(() => toMovieDataArray(popular.data), [popular.data])
-  const topRatedMovies = useMemo(() => toMovieDataArray(topRated.data), [topRated.data])
-  const upcomingMovies = useMemo(() => toMovieDataArray(upcoming.data), [upcoming.data])
+  const nowPlayingMovies = useMemo(() => queryUtils.formatMoviePages(nowPlaying.data), [nowPlaying.data])
+  const popularMovies = useMemo(() => queryUtils.formatMoviePages(popular.data), [popular.data])
+  const topRatedMovies = useMemo(() => queryUtils.formatMoviePages(topRated.data), [topRated.data])
+  const upcomingMovies = useMemo(() => queryUtils.formatMoviePages(upcoming.data), [upcoming.data])
 
   return (
     <section className='overflow-x-auto'>

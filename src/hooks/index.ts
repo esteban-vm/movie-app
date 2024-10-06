@@ -1,4 +1,4 @@
 'use client'
 
-export * as queries from './queries.hooks'
-export * as ui from './ui.hooks'
+export * as queryHooks from './query.hooks'
+export * as uiHooks from './ui.hooks'
