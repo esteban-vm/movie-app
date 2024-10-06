@@ -1,14 +1,14 @@
 import { useMemo } from 'react'
 import { MovieCarousel, MovieGrid, MovieList } from '@/containers'
-import { queries, ui } from '@/hooks'
-import { toMovieDataArray } from '@/utils'
+import { queryHooks, uiHooks } from '@/hooks'
+import { queryUtils } from '@/utils'
 
 export default function HomeView() {
-  const topRated = queries.useTopRatedMovies()
-  const firstUpcoming = queries.useFirstUpcomingMovies()
-  const { isAnimated } = ui.useMovieCarousel()
-  const topRatedMovies = useMemo(() => toMovieDataArray(topRated.data), [topRated.data])
-  const { nextMovies, setCurrent } = ui.useMovieList(firstUpcoming.data)
+  const topRated = queryHooks.useTopRatedMovies()
+  const firstUpcoming = queryHooks.useFirstUpcomingMovies()
+  const { isAnimated } = uiHooks.useMovieCarousel()
+  const topRatedMovies = useMemo(() => queryUtils.formatMoviePages(topRated.data), [topRated.data])
+  const { nextMovies, setCurrent } = uiHooks.useMovieList(firstUpcoming.data)
 
   return (
     <section className='grid grid-cols-1 ~gap-1/2 ~p-1/2 grid-areas-home md:grid-cols-3'>

@@ -3,7 +3,7 @@
 import { Button } from 'flowbite-react'
 import { useEffect, useState } from 'react'
 import { LuArrowBigDown, LuArrowBigUp } from 'react-icons/lu'
-import { clsx } from '@/utils'
+import { twUtils } from '@/utils'
 
 export default function ScrollButton() {
   const [isVisible, setIsVisible] = useState(false)
@@ -33,7 +33,7 @@ export default function ScrollButton() {
   }, [])
 
   return (
-    <Button.Group className={clsx('fixed bottom-2 right-2 outline-none', !isVisible && 'hidden')}>
+    <Button.Group className={twUtils.clsx('fixed bottom-2 right-2 outline-none', !isVisible && 'hidden')}>
       <Button className='outline-none' gradientDuoTone='purpleToBlue' title='Back to top' pill onClick={scrollToTop}>
         <LuArrowBigUp className='size-5' />
       </Button>

@@ -5,12 +5,12 @@ import { ListGroup, Spinner, TextInput } from 'flowbite-react'
 import { useState } from 'react'
 import { LuSearch } from 'react-icons/lu'
 import { useDebounce } from 'use-debounce'
-import { queries } from '@/hooks'
+import { queryHooks } from '@/hooks'
 
 export default function SearchInput() {
   const [search, setSearch] = useState('')
   const [name] = useDebounce(search, 1_000)
-  const { data: movies, isFetching } = queries.useMoviesByName(name)
+  const { data: movies, isFetching } = queryHooks.useMoviesByName(name)
 
   const handleSearch: ChangeEventHandler<HTMLInputElement> = (event) => {
     const input = event.target.value.trim()

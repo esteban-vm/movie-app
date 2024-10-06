@@ -1,11 +1,11 @@
 import { tmdb } from '@/api/config'
-import { extractPageNumber, toMovieDataList } from '@/utils'
+import { serverUtils } from '@/utils'
 
 export async function GET(request: Request) {
   try {
-    const page = extractPageNumber(request)
+    const page = await serverUtils.getPageNumber(request)
     const { results } = await tmdb.movies.topRated({ page })
-    const movies = await toMovieDataList(results)
+    const movies = await serverUtils.formatMovieList(results)
     return Response.json(movies, { status: 200 })
   } catch (error) {
     return Response.json(error, { status: 500 })

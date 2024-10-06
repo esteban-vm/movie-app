@@ -6,7 +6,7 @@ import localFont from 'next/font/local'
 import { ScrollButton } from '@/components'
 import { Navigation } from '@/containers'
 import { MovieProvider } from '@/providers'
-import { clsx } from '@/utils'
+import { twUtils } from '@/utils'
 
 export const metadata: Metadata = {
   title: 'Movie App',
@@ -19,7 +19,7 @@ export default function RootLayout(props: { children: ReactNode }) {
       <head>
         <ThemeModeScript />
       </head>
-      <body className={clsx('antialiased', redditSans.variable)} suppressHydrationWarning>
+      <body className={twUtils.clsx('antialiased', redditSans.variable)} suppressHydrationWarning>
         <MovieProvider>
           <Navigation />
           <main className='absolute left-1/2 top-16 -z-10 w-full max-w-screen-2xl -translate-x-1/2' {...props} />
