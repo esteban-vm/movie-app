@@ -37,7 +37,7 @@ export const useMovieList = (movies?: MovieData[]) => {
   return { setCurrent, nextMovies }
 }
 
-export const useScroll = () => {
+export const useScrollButton = () => {
   const [isVisible, setIsVisible] = useState(false)
 
   const scrollToTop = () => {

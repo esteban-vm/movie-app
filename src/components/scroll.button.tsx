@@ -6,7 +6,7 @@ import { uiHooks } from '@/hooks'
 import { twUtils } from '@/utils'
 
 export default function ScrollButton() {
-  const { isVisible, scrollToTop, scrollToBottom } = uiHooks.useScroll()
+  const { isVisible, scrollToTop, scrollToBottom } = uiHooks.useScrollButton()
 
   return (
     <Button.Group className={twUtils.clsx('fixed bottom-2 right-2 outline-none', !isVisible && 'hidden')}>
