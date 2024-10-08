@@ -1,5 +1,7 @@
 import type { MovieData } from '@/types'
+import type { ChangeEventHandler } from 'react'
 import { useEffect, useState } from 'react'
+import { useDebounce } from 'use-debounce'
 
 export const useMovieCarousel = () => {
   const [isAnimated, setIsAnimated] = useState(false)
@@ -60,4 +62,21 @@ export const useScroll = () => {
   }, [])
 
   return { isVisible, scrollToTop, scrollToBottom }
+}
+
+export const useSearchInput = () => {
+  const [search, setSearch] = useState('')
+  const [debouncedSearch] = useDebounce(search, 1_000)
+
+  const handleSearch: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const input = event.target.value.trim()
+
+    if (input) {
+      setSearch(input)
+    } else {
+      setSearch('')
+    }
+  }
+
+  return { movieName: debouncedSearch, handleSearch }
 }

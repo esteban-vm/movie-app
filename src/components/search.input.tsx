@@ -1,26 +1,12 @@
 'use client'
 
-import type { ChangeEventHandler } from 'react'
 import { ListGroup, Spinner, TextInput } from 'flowbite-react'
-import { useState } from 'react'
 import { LuSearch } from 'react-icons/lu'
-import { useDebounce } from 'use-debounce'
-import { queryHooks } from '@/hooks'
+import { queryHooks, uiHooks } from '@/hooks'
 
 export default function SearchInput() {
-  const [search, setSearch] = useState('')
-  const [name] = useDebounce(search, 1_000)
-  const { data: movies, isFetching } = queryHooks.useMoviesByName(name)
-
-  const handleSearch: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const input = event.target.value.trim()
-
-    if (input) {
-      setSearch(input)
-    } else {
-      setSearch('')
-    }
-  }
+  const { movieName, handleSearch } = uiHooks.useSearchInput()
+  const { data: movies, isFetching } = queryHooks.useMoviesByName(movieName)
 
   return (
     <>
