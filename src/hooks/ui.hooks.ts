@@ -1,5 +1,7 @@
 import type { MovieData } from '@/types'
+import type { ChangeEventHandler } from 'react'
 import { useEffect, useState } from 'react'
+import { useDebounce } from 'use-debounce'
 
 export const useMovieCarousel = () => {
   const [isAnimated, setIsAnimated] = useState(false)
@@ -33,4 +35,48 @@ export const useMovieList = (movies?: MovieData[]) => {
   }, [current, movies])
 
   return { setCurrent, nextMovies }
+}
+
+export const useScrollButton = () => {
+  const [isVisible, setIsVisible] = useState(false)
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 100) {
+        setIsVisible(true)
+      } else {
+        setIsVisible(false)
+      }
+    }
+
+    window.addEventListener('scroll', toggleVisibility)
+    return () => window.removeEventListener('scroll', toggleVisibility)
+  }, [])
+
+  return { isVisible, scrollToTop, scrollToBottom }
+}
+
+export const useSearchInput = () => {
+  const [search, setSearch] = useState('')
+  const [debouncedSearch] = useDebounce(search, 1_000)
+
+  const handleSearch: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const input = event.target.value.trim()
+
+    if (input) {
+      setSearch(input)
+    } else {
+      setSearch('')
+    }
+  }
+
+  return { movieName: debouncedSearch, handleSearch }
 }
