@@ -34,3 +34,30 @@ export const useMovieList = (movies?: MovieData[]) => {
 
   return { setCurrent, nextMovies }
 }
+
+export const useScroll = () => {
+  const [isVisible, setIsVisible] = useState(false)
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 100) {
+        setIsVisible(true)
+      } else {
+        setIsVisible(false)
+      }
+    }
+
+    window.addEventListener('scroll', toggleVisibility)
+    return () => window.removeEventListener('scroll', toggleVisibility)
+  }, [])
+
+  return { isVisible, scrollToTop, scrollToBottom }
+}
